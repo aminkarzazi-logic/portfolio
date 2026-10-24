@@ -1,474 +1,217 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Amin Karzazi — AminTech Solutions</title>
-<meta name="description" content="Portfólio de Amin Karzazi, fundador da AminTech Solutions. Estudos e projetos em Java, Spring Boot e IA aplicada.">
-<meta name="author" content="Amin Karzazi">
-<link rel="canonical" href="https://aminkarzazi-logic.github.io/amintech-solutions/">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Amin Karzazi — AminTech Solutions">
-<meta property="og:description" content="Estudos e projetos em Java, Spring Boot e IA aplicada.">
-<meta property="og:url" content="https://aminkarzazi-logic.github.io/amintech-solutions/">
-<meta property="og:locale" content="pt_BR">
-
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Amin Karzazi",
-  "jobTitle": "Desenvolvedor Java em formação",
-  "url": "https://aminkarzazi-logic.github.io/amintech-solutions/",
-  "worksFor": { "@type": "Organization", "name": "AminTech Solutions" },
-  "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressCountry": "BR" },
-  "knowsAbout": ["Java", "Spring Boot", "HTML", "CSS", "Inteligência Artificial"],
-  "sameAs": [
-    "https://github.com/amintech-solutions",
-    "https://www.linkedin.com/in/amin-karzazi-259a95439",
-    "https://lattes.cnpq.br/5289642373788927"
-  ]
-}
-</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amin Karzazi — Portfólio</title>
+<meta name="description" content="Portfólio de Amin Karzazi: matemática, desenvolvimento Java, IA aplicada e automação de processos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    box-sizing: border-box;
-    --ink: #0F1B2D;
-    --panel: #16243A;
-    --panel-2: #1C2C46;
-    --line: #2A3B54;
-    --text: #E9EDF3;
-    --text-dim: #A7B4C8;
-    --brass: #D9A441;
-    --brass-dim: #B8862F;
-    --teal: #57D6C8;
-    --serif: "Fraunces", Georgia, "Times New Roman", serif;
-    --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  :root:not([data-theme="light"]) { color-scheme: dark; }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ink: #0F1B2D; --panel: #16243A; --text: #E9EDF3;
-    }
-  }
-  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
-  * { box-sizing: inherit; margin: 0; padding: 0; }
-  body {
-    background: var(--ink);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  img { max-width: 100%; }
-
-  a { color: var(--brass); text-decoration: none; }
-  a:hover { color: var(--teal); }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
-
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
-
-  /* ---------- NAV ---------- */
-  header.site {
-    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40;
-    background: rgba(15,27,45,0.86);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  nav {
-    max-width: 1080px; margin: 0 auto; padding: 18px 32px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .logo {
-    font-family: var(--serif); font-weight: 600; font-size: 1.15rem;
-    letter-spacing: 0.01em; color: var(--text);
-  }
-  .logo em { font-style: normal; color: var(--brass); }
-  nav ul { list-style: none; display: flex; gap: 28px; }
-  nav a { color: var(--text-dim); font-size: 0.95rem; }
-  nav a:hover { color: var(--text); }
-  .nav-toggle { display: none; }
-
-  /* ---------- HERO ---------- */
-  .hero {
-    position: relative;
-    padding: 120px 0 100px;
-    overflow: hidden;
-    border-bottom: 1px solid var(--line);
-  }
-  .hero-pattern {
-    position: absolute; inset: 0; z-index: 0; opacity: 0.35;
-    pointer-events: none;
-  }
-  .hero .wrap { position: relative; z-index: 1; }
-  .eyebrow-line {
-    display: flex; align-items: center; gap: 14px;
-    color: var(--text-dim); font-size: 0.95rem; margin-bottom: 28px;
-  }
-  .eyebrow-line::before {
-    content: ""; width: 34px; height: 1px; background: var(--brass);
-  }
-  h1.hero-title {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(2.4rem, 5.4vw, 4.2rem);
-    line-height: 1.08;
-    max-width: 14ch;
-    color: var(--text);
-  }
-  .hero-title .accent { color: var(--brass); font-style: italic; }
-  .hero-sub {
-    margin-top: 26px;
-    max-width: 46ch;
-    font-size: 1.15rem;
-    color: var(--text-dim);
-  }
-  .hero-cta { margin-top: 44px; display: flex; gap: 18px; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 26px; border-radius: 2px;
-    font-size: 0.98rem; font-weight: 500;
-    border: 1px solid transparent; cursor: pointer;
-  }
-  .btn-primary { background: var(--brass); color: #14202F; }
-  .btn-primary:hover { background: #E8B354; color: #14202F; }
-  .btn-ghost { border-color: var(--line); color: var(--text); }
-  .btn-ghost:hover { border-color: var(--brass); color: var(--brass); }
-
-  section { padding: 96px 0; border-bottom: 1px solid var(--line); }
-  section:last-of-type { border-bottom: none; }
-
-  .section-head { max-width: 60ch; margin-bottom: 56px; }
-  .section-kicker {
-    color: var(--brass); font-size: 0.92rem; font-weight: 500;
-    display: block; margin-bottom: 12px;
-  }
-  h2 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(1.7rem, 3vw, 2.3rem);
-    color: var(--text);
-  }
-  .section-lede { margin-top: 16px; color: var(--text-dim); font-size: 1.05rem; }
-
-  /* ---------- SOBRE / TIMELINE ---------- */
-  .about-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; }
-  .about-copy p { color: var(--text-dim); margin-bottom: 18px; }
-  .about-copy strong { color: var(--text); font-weight: 500; }
-
-  .timeline { border-left: 1px solid var(--line); padding-left: 32px; }
-  .tl-item { position: relative; padding-bottom: 36px; }
-  .tl-item:last-child { padding-bottom: 0; }
-  .tl-item::before {
-    content: attr(data-n);
-    position: absolute; left: -32px; top: 0;
-    transform: translateX(-50%);
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--brass);
-    font-size: 0; /* dot only, number shown in label */
-  }
-  .tl-year {
-    font-family: var(--serif); color: var(--brass); font-size: 0.95rem;
-    display: block; margin-bottom: 4px;
-  }
-  .tl-title { color: var(--text); font-weight: 500; margin-bottom: 4px; }
-  .tl-desc { color: var(--text-dim); font-size: 0.95rem; }
-
-  /* ---------- HABILIDADES ---------- */
-  .skills-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-  }
-  .skill-card {
-    background: var(--panel);
-    padding: 32px;
-  }
-  .skill-card h3 {
-    font-family: var(--serif); font-weight: 500; font-size: 1.15rem;
-    color: var(--text); margin-bottom: 10px;
-  }
-  .skill-card p { color: var(--text-dim); font-size: 0.95rem; }
-  .skill-tag {
-    display: inline-block; margin-top: 14px;
-    font-size: 0.78rem; color: var(--teal);
-    border: 1px solid rgba(87,214,200,0.35);
-    padding: 3px 10px; border-radius: 2px;
-  }
-
-  /* ---------- PROJETOS ---------- */
-  .projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-  }
-  .project-card {
-    border: 1px solid var(--line);
-    background: var(--panel);
-    padding: 28px;
-    display: flex; flex-direction: column; height: 100%;
-  }
-  .project-status {
-    font-size: 0.78rem; color: var(--brass);
-    margin-bottom: 14px;
-  }
-  .project-card h3 {
-    font-family: var(--serif); font-weight: 500; font-size: 1.1rem;
-    color: var(--text); margin-bottom: 10px;
-  }
-  .project-card p { color: var(--text-dim); font-size: 0.93rem; flex-grow: 1; }
-  .project-card .repo-note {
-    margin-top: 18px; font-size: 0.85rem; color: var(--text-dim);
-    border-top: 1px solid var(--line); padding-top: 14px;
-  }
-
-  /* ---------- CONTATO ---------- */
-  .contact-panel {
-    display: flex; flex-wrap: wrap; gap: 20px 48px;
-    align-items: flex-end; justify-content: space-between;
-  }
-  .contact-copy { max-width: 42ch; }
-  .contact-copy p { color: var(--text-dim); margin-top: 14px; }
-  .contact-links { display: flex; flex-direction: column; gap: 14px; }
-  .contact-links a {
-    color: var(--text); font-size: 1.05rem;
-    display: flex; align-items: center; gap: 10px;
-    border-bottom: 1px solid transparent;
-  }
-  .contact-links a:hover { border-color: var(--brass); }
-  .contact-links small { display: block; color: var(--text-dim); font-size: 0.78rem; }
-
-  footer {
-    padding: 32px 0 calc(32px + env(safe-area-inset-bottom, 0px));
-    color: var(--text-dim); font-size: 0.85rem;
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-  }
-
-  @media (max-width: 760px) {
-    nav ul { display: none; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .hero { padding: 90px 0 70px; }
-    .contact-panel { flex-direction: column; align-items: flex-start; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-  }
+:root{
+  --paper:#f6f2ea; --card:#fffdf9; --ink:#1f2328; --muted:#5b5f66;
+  --teal:#7a5a2c; --teal-dark:#1f2630; --sun:#d8bf94; --line:#e2d9c8;
+  --serif:"Fraunces",Georgia,serif; --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#15181d; --card:#1d2128; --ink:#ece7de; --muted:#b4b0a6; --teal:#d8bf94; --teal-dark:#0f1217; --line:#333a45;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+header.top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:58px;flex-wrap:wrap}
+.logo{font:800 20px var(--serif);text-decoration:none}
+nav{display:flex;gap:20px;flex-wrap:wrap}
+nav a{text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--teal)}
+.hero{background:var(--teal-dark);color:#f1ece2;padding:72px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+.hero h1{font:800 clamp(44px,7.5vw,84px)/1 var(--serif);margin:0 0 20px;letter-spacing:-.02em}
+.hero .role{font-size:clamp(18px,2.4vw,23px);max-width:30ch;margin:0 0 34px;color:#cfc3ab}
+.photo{position:relative;width:100%;max-width:340px;aspect-ratio:4/5;margin:0 auto;border-radius:18px;overflow:hidden;background:#2b3441;border:3px solid var(--sun);box-shadow:14px 14px 0 #343f4e}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.photo .initials{position:absolute;inset:0;display:grid;place-items:center;font:800 88px var(--serif);color:#a79b85}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.photo{order:-1;max-width:240px}}
+.btn{display:inline-block;padding:12px 24px;border-radius:999px;font-weight:600;text-decoration:none;margin:0 10px 10px 0}
+.btn.main{background:var(--sun);color:#1f2630}
+.btn.alt{border:2px solid #a79b85;color:#f1ece2}
+section{padding:72px 0}
+h2{font:800 clamp(28px,4.5vw,40px)/1.15 var(--serif);margin:0 0 22px;max-width:22ch}
+.lead{color:var(--muted);max-width:62ch;margin:-8px 0 28px}
+.about p{max-width:68ch;margin:0 0 16px}
+.focus{border-left:4px solid var(--teal);padding:4px 0 4px 16px;color:var(--muted);margin:24px 0 36px;max-width:68ch}
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+.about-label{display:block;color:var(--teal);font-weight:600;margin-bottom:14px}
+.about-text h2{max-width:14ch}
+.timeline{list-style:none;margin:0;padding:0 0 0 30px;border-left:2px solid var(--line)}
+.timeline li{position:relative;margin:0 0 34px}
+.timeline li:last-child{margin-bottom:0}
+.timeline li::before{content:"";position:absolute;left:-37px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 4px var(--paper)}
+.timeline .place{font:600 17px/1.4 var(--serif);color:var(--teal);margin:0 0 6px}
+.timeline .title{font-weight:600;font-size:18px;line-height:1.4;margin:0 0 6px}
+.timeline .desc{color:var(--muted);margin:0}
+@media (max-width:820px){.about-grid{grid-template-columns:1fr;gap:40px}}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.skill{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px}
+.skill h3{font:600 20px var(--serif);margin:0 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:3px 10px;font-size:15px}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+a.project{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;text-decoration:none;min-height:190px;transition:transform .15s,border-color .15s}
+a.project:hover{transform:translateY(-3px);border-color:var(--teal)}
+a.project h3{font:600 21px/1.25 var(--serif);margin:0}
+a.project p{margin:0;color:var(--muted);flex:1}
+a.project .go{font-weight:600;color:var(--teal)}
+a.project.soon{border-style:dashed}
+a.project.soon h3,a.project.soon p{color:var(--muted)}
+.contact{background:var(--teal-dark);color:#f1ece2}
+.contact h2{color:#fff}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:28px}
+.links a{display:block;border:1px solid #4a5463;border-radius:10px;padding:18px;text-decoration:none}
+.links a:hover{border-color:var(--sun)}
+.links b{display:block;font-size:18px}
+.links span{color:#cfc3ab;font-size:15px;word-break:break-word}
+footer{padding:26px 0;text-align:center;color:var(--muted);font-size:15px}
 </style>
 </head>
 <body>
 
-<header class="site">
-  <nav>
-    <span class="logo">Amin<em>Tech</em> Solutions</span>
-    <ul>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#habilidades">Habilidades</a></li>
-      <li><a href="#projetos">Projetos</a></li>
-      <li><a href="#contato">Contato</a></li>
-    </ul>
-  </nav>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio">Amin Karzazi</a>
+    <nav aria-label="Seções">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
 </header>
 
-<section class="hero">
-  <svg class="hero-pattern" viewBox="0 0 1080 480" preserveAspectRatio="xMaxYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <pattern id="zellige" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-        <path d="M30 0 L60 30 L30 60 L0 30 Z" fill="none" stroke="#D9A441" stroke-width="0.6"/>
-        <circle cx="30" cy="30" r="6" fill="none" stroke="#57D6C8" stroke-width="0.5"/>
-      </pattern>
-    </defs>
-    <rect x="520" y="0" width="560" height="480" fill="url(#zellige)"/>
-  </svg>
+<main>
+<!-- INÍCIO (Accueil) -->
+<div class="hero" id="inicio">
   <div class="wrap">
-    <div class="eyebrow-line">Java · IA generativa · Automação de processos</div>
-    <h1 class="hero-title">Do quadro-negro à <span class="accent">automação inteligente.</span></h1>
-    <p class="hero-sub">AminTech — desenvolvendo aplicações Java inteligentes com IA para automatizar processos e transformar negócios.</p>
-    <div class="hero-cta">
-      <a href="#projetos" class="btn btn-primary">Ver projetos</a>
-      <a href="#contato" class="btn btn-ghost">Falar comigo</a>
+    <div>
+      <h1>Amin Karzazi</h1>
+      <p class="role">Professor de matemática e fundador da <a href="https://aminkarzazi-logic.github.io/amintech-solutions/" target="_blank" rel="noopener noreferrer">AminTech Solutions</a>.</p>
+      <a class="btn main" href="#projetos">Ver projetos</a>
+      <a class="btn alt" href="#contato">Falar comigo</a>
+    </div>
+    <!-- FOTO: coloque sua foto no repositório com o nome foto.jpg (na mesma pasta do index.html).
+         Se o arquivo não existir, aparecem as iniciais "AK". -->
+    <div class="photo">
+      <span class="initials" aria-hidden="true">AK</span>
+      <img src="foto.jpg" alt="Foto de Amin Karzazi" onerror="this.style.display='none'">
+    </div>
+  </div>
+</div>
+
+<!-- SOBRE: duas colunas (texto à esquerda, linha do tempo à direita) -->
+<section class="about" id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <span class="about-label">Sobre</span>
+      <h2>Uma trajetória construída em lógica</h2>
+      <p><strong>Sou Amin Karzazi</strong>, e estou atualizando meus conhecimentos em Java, Spring Boot e IA aplicada. Moro em São Paulo e sou fundador da AminTech Solutions.</p>
+      <p>Sou formado em <strong>Matemática e Informática</strong> pela Universidade Mohammed V-Agdal, em Rabat, no Marrocos. Fiz uma formação técnica em <strong>Java J2EE</strong> e uma formação em pedagogia, e trabalhei como professor de matemática. Ao me mudar para o Brasil, aprendi o português, concluí o ensino médio e decidi voltar ao desenvolvimento de software, agora com foco em <strong>IA aplicada e automação</strong>.</p>
+      <p>Hoje faço o curso técnico em Administração e Logística, para entender como as empresas funcionam por dentro, e desenvolvo a <strong>AminTech Solutions</strong>: um projeto de estudo com o código publicado no GitHub.</p>
+      <p class="focus">Foco de estudo: Java, Spring Boot, APIs REST, LLMs, RAG, Agentes de IA, MCP e Automação.</p>
+    </div>
+    <ol class="timeline">
+      <li><p class="place">Université Mohammed V-Agdal, Faculdade de Ciências, Rabat, Marrocos</p><p class="title">Bacharelado em Matemática e Informática (Licence d'Études Fondamentales)</p><p class="desc">Base em lógica e programação.</p></li>
+      <li><p class="place">OFPPT — Instituto Especializado de Tecnologia Aplicada NTIC, Rabat, Marrocos</p><p class="title">Formação Qualificante em Análise e Desenvolvimento Java J2EE</p><p class="desc">Formação técnica, com foco em concepção e desenvolvimento de sistemas usando Java J2EE.</p></li>
+      <li><p class="place">Centre Régional des Métiers de l'Éducation et de Formation (CRMEF), Rabat, Marrocos</p><p class="title">Formação em Pedagogia — Ensino Secundário Colegial, especialidade Matemática</p><p class="desc">Atuação como professor de matemática no ensino fundamental II.</p></li>
+      <li><p class="place">Ministério da Educação Nacional, Rabat, Marrocos</p><p class="title">Professor de Matemática do Ensino Secundário (EF II)</p><p class="desc">Atuação no sistema oficial de ensino público, aplicando metodologias pedagógicas e desenvolvendo o raciocínio lógico-matemático de jovens estudantes.</p></li>
+      <li><p class="place">Chegada ao Brasil — Novo recomeço</p><p class="title">Adaptação cultural e aprendizagem da língua portuguesa</p><p class="desc">Imersão no idioma português, conclusão do ensino médio brasileiro para aprender a língua e a cultura, integrar-se com os brasileiros e conhecer o sistema educacional do país, e primeiras experiências no mercado local.</p></li>
+      <li><p class="place">Curso Técnico em Administração</p><p class="title">Desenvolvimento de competências corporativas</p><p class="desc">Formação focada em processos organizacionais, gestão de negócios e logística, alinhando a visão administrativa ao desenvolvimento de soluções tecnológicas inteligentes.</p></li>
+      <li><p class="place">Hoje</p><p class="title">AminTech Solutions</p><p class="desc">Estudo e aplicação de Java, IA generativa e automação de processos.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades" style="background:var(--card)">
+  <div class="wrap">
+    <h2>Minhas habilidades</h2>
+    <p class="lead">Um perfil que junta matemática, programação, ensino e visão de negócios.</p>
+    <div class="skills">
+      <div class="skill"><h3>Desenvolvimento</h3>
+        <ul class="chips"><li>Java</li><li>Java EE / J2EE</li><li>Spring Boot</li><li>APIs REST</li><li>HTML</li><li>CSS</li><li>PHP</li><li>C</li><li>VB.NET</li></ul></div>
+      <div class="skill"><h3>Bancos de dados</h3>
+        <ul class="chips"><li>SQL</li><li>MySQL</li><li>Oracle</li><li>SQL Server</li><li>Hibernate</li></ul></div>
+      <div class="skill"><h3>IA e automação</h3>
+        <ul class="chips"><li>IA generativa</li><li>LLMs via API</li><li>RAG</li><li>Agentes de IA</li><li>MCP</li><li>Automação de processos</li></ul></div>
+      <div class="skill"><h3>Matemática</h3>
+        <ul class="chips"><li>Estatística</li><li>Pesquisa operacional</li><li>Análise numérica</li><li>MATLAB</li><li>Maple</li></ul></div>
+      <div class="skill"><h3>Modelagem e redes</h3>
+        <ul class="chips"><li>UML</li><li>Merise</li><li>LAN / WAN</li><li>TCP/IP</li><li>DNS</li></ul></div>
+      <div class="skill"><h3>Negócios e comunicação</h3>
+        <ul class="chips"><li>Administração</li><li>Logística</li><li>Marketing digital</li><li>Pacote Office</li><li>Ensino de matemática</li></ul></div>
     </div>
   </div>
 </section>
 
-<section id="sobre">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="about-copy">
-        <span class="section-kicker">Sobre</span>
-
-       <h2 style="margin-bottom:20px;">Uma trajetória construída em lógica</h2>
-<p><strong>Sou Amin Karzazi</strong>, e estou atualizando meus conhecimentos em Java, Spring Boot e IA aplicada. Moro em São Paulo e sou fundador da AminTech Solutions.</p>
-<p>Sou formado em <strong>Matemática e Informática</strong> pela Universidade Mohammed V-Agdal, em Rabat, no Marrocos. Fiz uma formação técnica em <strong>Java J2EE</strong> e uma formação em pedagogia, e trabalhei como professor de matemática. Ao me mudar para o Brasil, aprendi o português, concluí o ensino médio e decidi voltar ao desenvolvimento de software, agora com foco em <strong>IA aplicada e automação</strong>.</p>
-<p>Hoje faço o curso técnico em Administração e Logística, para entender como as empresas funcionam por dentro, e desenvolvo a <strong>AminTech Solutions</strong>: um projeto de estudo com o código publicado no GitHub.</p>
-
-<p style="margin-top:24px; font-size:0.92rem; color:var(--teal); letter-spacing:0.01em;">Foco de estudo: Java · Spring Boot · APIs REST · LLMs · RAG · Agentes de IA · MCP · Automação</p>
-
-      </div>
-
-      <div class="timeline">
-        <div class="tl-item" data-n="1">
-          <span class="tl-year">Université Mohammed V-Agdal, Faculdade de Ciências, Rabat, Marrocos</span>
-          <div class="tl-title">Bacharelado em Matemática e Informática (Licence d'Études Fondamentales)</div>
-          <div class="tl-desc"> Base em lógica e programação.</div>
-        </div>
- <div class="tl-item" data-n="2">
-          <span class="tl-year">OFPPT — Instituto Especializado de Tecnologia Aplicada NTIC, Rabat, Marrocos</span>
-          <div class="tl-title">Formação Qualificante em Análise e Desenvolvimento Java J2EE</div>
-          <div class="tl-desc">Formação técnica, com foco em concepção e 
-     desenvolvimento de sistemas usando Java J2EE.</div>
-        </div>
-
-        <div class="tl-item" data-n="3">
-          <span class="tl-year">Centre Régional des Métiers de l'Éducation et de Formation (CRMEF), Rabat, Marrocos</span>
-          <div class="tl-title">Formação em Pedagogia — Ensino Secundário Colegial, especialidade Matemática</div>
-          <div class="tl-desc">Atuação como professor de matemática no ensino fundamental II.</div>
-        </div>
-        <div class="tl-item" data-n="4">
-          <span class="tl-year"> Ministério da Educação Nacional, Rabat, Marrocos</span>
-          <div class="tl-title">Professor de Matemática do Ensino Secundário (EF II)</div>
-          <div class="tl-desc">Atuação no sistema oficial de ensino público, aplicando metodologias pedagógicas e desenvolvendo o raciocínio lógico-matemático de jovens estudantes.</div>
-        </div>
-        <div class="tl-item" data-n="5">
-          <span class="tl-year">Chegada ao Brasil - Novo recomeço</span>
-          <div class="tl-title">Adaptação Cultural e Transição de Carreira </div>
-          <div class="tl-desc">Imersão no idioma português, conclusão do ensino médio brasileiro para equivalência de estudos e primeiras experiências no mercado local, construindo a base                 para o meu recomeço profissional.</div>
-        </div>
-       <div class="tl-item" data-n="4">
-          <span class="tl-year">Curso Técnico em Administração</span>
-          <div class="tl-title">Desenvolvimento de Competências Corporativas</div>
-          <div class="tl-desc">Formação focada em processos organizacionais, gestão de negócios e logística, alinhando a visão administrativa ao desenvolvimento de soluções tecnológicas inteligentes.</div>
-        </div>
-
-        <div class="tl-item" data-n="4">
-          <span class="tl-year">Hoje</span>
-          <div class="tl-title">AminTech Solutions</div>
-          <div class="tl-desc">Estudo e aplicação de Java, IA generativa e automação de processos.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="habilidades">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-kicker">Habilidades</span>
-      <h2>Ferramentas que estou dominando</h2>
-      <p class="section-lede">Cada habilidade abaixo está sendo aplicada nos projetos em desenvolvimento da AminTech.</p>
-    </div>
-    <div class="skills-grid">
-<div class="skill-card">
-        <h3>HTML &amp; CSS</h3>
-        <p>Estruturação e estilização de páginas web, praticadas no projeto de fim de curso da licenciatura e na formação em Análise e Desenvolvimento Java J2EE.</p>
-        <span class="skill-tag">Front-end</span>
-      </div>
-
-      <div class="skill-card">
-        <h3>Java &amp; Spring Boot</h3>
-        <p>Construção de APIs e serviços back-end como base para os sistemas da AminTech.</p>
-        <span class="skill-tag">Back-end</span>
-      </div>
-      <div class="skill-card">
-        <h3>Integração com LLMs via API</h3>
-        <p>Conexão de modelos de linguagem a aplicações reais para automatizar tarefas e respostas.</p>
-        <span class="skill-tag">IA aplicada</span>
-      </div>
-      <div class="skill-card">
-        <h3>Sistemas de RAG</h3>
-        <p>Retrieval-Augmented Generation para que respostas de IA usem dados e documentos específicos.</p>
-        <span class="skill-tag">Dados + IA</span>
-      </div>
-      <div class="skill-card">
-        <h3>Agentes de IA e automação</h3>
-        <p>Fluxos automatizados que reduzem tarefas manuais e repetitivas em processos de negócio.</p>
-        <span class="skill-tag">Automação</span>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- PROJETOS -->
 <section id="projetos">
   <div class="wrap">
-    <div class="section-head">
-      <span class="section-kicker">Projetos</span>
-      <h2>Em construção no repositório amintech-solutions/h2>
-      <p class="section-lede">A estrutura de pastas já está organizada — os projetos abaixo estão sendo desenvolvidos um a um.</p>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <span class="project-status">Em desenvolvimento</span>
-        <h3>Java &amp; Spring Boot — Fundamentos</h3>
-        <p>Base back-end em Java e Spring Boot, ponto de partida para os demais módulos do repositório.</p>
-        <div class="repo-note">01-java-spring-basics</div>
-      </div>
-      <div class="project-card">
-        <span class="project-status">Em desenvolvimento</span>
-        <h3>Integrações com LLMs</h3>
-        <p>Conexão de modelos de linguagem a aplicações Java para automatizar tarefas e respostas.</p>
-        <div class="repo-note">02-llm-integrations</div>
-      </div>
-      <div class="project-card">
-        <span class="project-status">Em desenvolvimento</span>
-        <h3>Sistemas de RAG</h3>
-        <p>Retrieval-Augmented Generation para que respostas de IA usem dados e documentos específicos.</p>
-        <div class="repo-note">03-rag-systems</div>
-      </div>
-      <div class="project-card">
-        <span class="project-status">Em desenvolvimento</span>
-        <h3>Agentes de IA</h3>
-        <p>Fluxos automatizados com agentes de IA para reduzir tarefas manuais em processos de negócio.</p>
-        <div class="repo-note">04-ai-agents</div>
-      </div>
-    </div>
-    <p style="margin-top:32px; color:var(--text-dim); font-size:0.95rem;">
-      Acompanhe o desenvolvimento completo no repositório
-      <a href="https://github.com/aminkarzazi-logic/amintech-solutions" target="_blank" rel="noopener">aminkarzazi-logic/amintech-solutions</a>.
-    </p>
-  </div>
-</section>
+    <h2>Meus projetos</h2>
+    <p class="lead">Clique em um bloco para abrir o projeto.</p>
+    <div class="projects">
 
-<section id="contato">
-  <div class="wrap">
-    <div class="contact-panel">
-      <div class="contact-copy">
-        <span class="section-kicker">Contato</span>
-        <h2>Vamos conversar</h2>
-        <p>Aberto a oportunidades, projetos de automação e parcerias.</p>
-      </div>
-      <div class="contact-links">
-        <a href="https://github.com/aminkarzazi-logic/amintech-solutions" target="_blank" rel="noopener">
-          GitHub
-          <small>Código dos meus projetos</small>
-        </a>
-        <a href="https://www.linkedin.com/in/amin-karzazi-259a95439" target="_blank" rel="noopener">
-          LinkedIn
-          <small>Ver meu perfil</small>
-        </a>
-       <a href="mailto:contato.amintech.dev@outlook.com">
-         E-mail
-         <small>contato.amintech.dev@outlook.com</small>
-       </a>
-      <a href="https://lattes.cnpq.br/5289642373788927" target="_blank" rel="noopener">
-       Currículo Lattes
-      <small>Formação e produção acadêmica</small>
+      <a class="project" href="https://aminkarzazi-logic.github.io/amintech-solutions/" target="_blank" rel="noopener noreferrer">
+        <h3>AminTech Solutions</h3>
+        <p>Portfólio da minha marca, com estudos e projetos em Java, Spring Boot, IA generativa e automação de processos.</p>
+        <span class="go">Abrir o site</span>
       </a>
-      </div>
+
+      <!-- PROJETO 2: troque o href, o título e a descrição. Se quiser tirar o estilo tracejado, apague a palavra "soon" da class. -->
+      <a class="project soon" href="#projetos" target="_blank" rel="noopener noreferrer">
+        <h3>Nome do site (em breve)</h3>
+        <p>Descrição do projeto: escreva aqui o que ele faz.</p>
+        <span class="go">Em breve</span>
+      </a>
+
+      <!-- PROJETO 3 -->
+      <a class="project soon" href="#projetos" target="_blank" rel="noopener noreferrer">
+        <h3>Nome do site (em breve)</h3>
+        <p>Descrição do projeto: escreva aqui o que ele faz.</p>
+        <span class="go">Em breve</span>
+      </a>
+
+      <!-- PROJETO 4 -->
+      <a class="project soon" href="#projetos" target="_blank" rel="noopener noreferrer">
+        <h3>Nome do site (em breve)</h3>
+        <p>Descrição do projeto: escreva aqui o que ele faz.</p>
+        <span class="go">Em breve</span>
+      </a>
+
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; width:100%;">
-    <span>AminTech Solutions</span>
-    <span>Amin Karzazi</span>
+<!-- CONTATO -->
+<section class="contact" id="contato">
+  <div class="wrap">
+    <h2>Vamos conversar</h2>
+    <p>Aberto a oportunidades, projetos de automação e parcerias.</p>
+    <div class="links">
+      <a href="https://github.com/aminkarzazi-logic/amintech-solutions" target="_blank" rel="noopener noreferrer"><b>GitHub</b><span>Código dos meus projetos</span></a>
+      <a href="https://www.linkedin.com/in/amin-karzazi-259a95439" target="_blank" rel="noopener noreferrer"><b>LinkedIn</b><span>Ver meu perfil</span></a>
+      <a href="mailto:contato.amintech.dev@outlook.com"><b>E-mail</b><span>contato.amintech.dev@outlook.com</span></a>
+      <a href="https://lattes.cnpq.br/5289642373788927" target="_blank" rel="noopener noreferrer"><b>Currículo Lattes</b><span>Formação e produção acadêmica</span></a>
+    </div>
   </div>
-</footer>
+</section>
+</main>
 
+<footer>© Amin Karzazi</footer>
 </body>
 </html>
