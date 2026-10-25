@@ -1,489 +1,290 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz Culture Générale • 2026</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
- <link rel="icon" type="image/png" sizes="32x32" href=".jpg">
-  <link rel="icon" type="image/png" sizes="16x16" href=".jpg">
-  <style>
-    :root {
-      --bg: #0f172a;
-      --card: rgba(30, 41, 59, 0.65);
-      --text: #e2e8f0;
-      --text-muted: #94a3b8;
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --correct: #22c55e;
-      --wrong: #ef4444;
-      --border: rgba(255,255,255,0.08);
-      --blur: blur(16px);
-      --radius: 1.25rem;
-      --shadow: 0 10px 30px -10px rgba(0,0,0,0.4);
-    }
-
-
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-   
-  padding-top: 80px;   /* ou 90px selon la hauteur réelle */
-
-    }
-
-    .container {
-      background: var(--card);
-      backdrop-filter: var(--blur);
-      -webkit-backdrop-filter: var(--blur);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem 2rem;
-      width: 100%;
-      max-width: 620px;
-      box-shadow: var(--shadow);
-      animation: fadeIn 0.8s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    h1 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      text-align: center;
-      background: linear-gradient(90deg, #a5b4fc, #c084fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 2rem;
-      letter-spacing: -0.5px;
-    }
-    .logo {
-  width: clamp(8px, 9vw, 30px);
-  border-radius: 50%;
-  border: 2px solid #000000;
-  float: left; /* Ajoute cette ligne pour positionner le logo à gauche */
-  margin-right: 15px; /* Optionnel : ajoute un peu d'espace à droite du logo */
-}
-
-    .score {
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-      color: var(--text);
-    }
-
-    .score span {
-      color: var(--primary);
-    }
-
-    .question {
-      font-size: 1.4rem;
-      line-height: 1.5;
-      font-weight: 500;
-      margin-bottom: 2.2rem;
-      text-align: center;
-      color: #f1f5f9;
-    }
-
-    .options {
-      display: grid;
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .option {
-      background: rgba(51, 65, 85, 0.4);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(8px);
-      padding: 1.1rem 1.4rem;
-      border-radius: 1rem;
-      cursor: pointer;
-      transition: all 0.28s ease;
-      font-size: 1.08rem;
-      color: var(--text);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .option::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(99,102,241,0.12), transparent);
-      opacity: 0;
-      transition: opacity 0.4s;
-      pointer-events: none;
-    }
-
-    .option:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px -8px rgba(99,102,241,0.25);
-      border-color: rgba(99,102,241,0.4);
-    }
-
-    .option:hover::before { opacity: 1; }
-
-    .option.selected {
-      background: rgba(99,102,241,0.22);
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.18);
-    }
-
-    .option.correct {
-      background: rgba(34,197,94,0.22);
-      border-color: var(--correct);
-      box-shadow: 0 0 0 3px rgba(34,197,94,0.18);
-    }
-
-    .option.wrong {
-      background: rgba(239,68,68,0.22);
-      border-color: var(--wrong);
-      box-shadow: 0 0 0 3px rgba(239,68,68,0.18);
-    }
-
-    button {
-      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-      color: white;
-      border: none;
-      padding: 1rem 2.5rem;
-      font-size: 1.15rem;
-      font-weight: 600;
-      border-radius: 3rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
-      max-width: 280px;
-      margin: 0 auto;
-      display: block;
-      box-shadow: 0 8px 20px -6px rgba(99,102,241,0.4);
-    }
-
-    button:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 12px 28px -6px rgba(99,102,241,0.55);
-    }
-
-    button:disabled {
-      background: #475569;
-      transform: none;
-      box-shadow: none;
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .category-select {
-      margin: 2rem 0;
-      text-align: center;
-    }
-
-    select {
-      background: rgba(51,65,85,0.5);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.9rem 1.3rem;
-      font-size: 1.05rem;
-      border-radius: 1rem;
-      width: 100%;
-      max-width: 320px;
-      backdrop-filter: blur(10px);
-      appearance: none;
-      cursor: pointer;
-    }
-
-    select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
-    }
-
-    .loading {
-      text-align: center;
-      font-size: 1.4rem;
-      color: var(--text);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%,100% { opacity: 0.6; }
-      50%     { opacity: 1; }
-    }
-
-    @media (max-width: 500px) {
-      .container { padding: 1.8rem 1.4rem; }
-      h1 { font-size: 2rem; }
-      .question { font-size: 1.25rem; }
-    }
-  </style>
-</head>
-<body>
-<header style="
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding: 1.1rem 1rem;
-  text-align: center;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #cbd5e1;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-">
-   
-Quiz Culture Générale
-</header>
-<div class="container" id="app">
-
-  <h1> Choisis une catégorie</h1>
-
-  <div class="category-select" id="start-screen">
-    <p style="margin-bottom: 1.2rem; color: var(--text-muted); font-size: 1.1rem;">
-      
-    </p>
-    <select id="category">
-      <option value="">Toutes les catégories</option>
-      <option value="9">Connaissances générales</option>
-      <option value="10">Livres</option>
-      <option value="11">Films</option>
-      <option value="12">Musique</option>
-      <option value="17">Science & Nature</option>
-      <option value="18">Informatique</option>
-      <option value="19">Mathématiques</option>
-      <option value="21">Sport</option>
-      <option value="22">Géographie</option>
-      <option value="23">Histoire</option>
-      <option value="24">Politique</option>
-      <option value="25">Art</option>
-    </select>
-    <br><br>
-    <button id="startBtn">Démarrer le quiz</button>
-  </div>
-
-  <div id="quiz" style="display:none;">
-    <div class="score">Score : <span id="score">0</span> / <span id="total">0</span></div>
-    
-    <div class="question" id="question"></div>
-    
-    <div class="options" id="options"></div>
-    
-    <button id="nextBtn" disabled>Suivant →</button>
-  </div>
-
-  <div id="loading" class="loading" style="display:none;">Chargement des questions...</div>
-
-</div>
-
-<script>
-const API_BASE = "https://opentdb.com/api.php?amount=10&type=multiple";
-let questions = [];
-let currentQuestion = 0;
-let score = 0;
-let selectedAnswer = null;
-
-const startScreen = document.getElementById("start-screen");
-const quizScreen   = document.getElementById("quiz");
-const loading      = document.getElementById("loading");
-const startBtn     = document.getElementById("startBtn");
-const nextBtn      = document.getElementById("nextBtn");
-const categorySelect = document.getElementById("category");
-
-startBtn.addEventListener("click", startQuiz);
-nextBtn.addEventListener("click", nextQuestion);
-
-async function startQuiz() {
-  const category = categorySelect.value;
-  let url = API_BASE;
-  if (category) url += `&category=${category}`;
-
-  startScreen.style.display = "none";
-  loading.style.display = "block";
-
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-
-    if (data.response_code !== 0) {
-      alert("Erreur lors du chargement des questions. Réessaie !");
-      location.reload();
-      return;
-    }
-
-    questions = data.results.map(q => ({
-      question: decodeHTML(q.question),
-      correct: decodeHTML(q.correct_answer),
-      answers: shuffle([
-        decodeHTML(q.correct_answer),
-        ...q.incorrect_answers.map(decodeHTML)
-      ])
-    }));
-
-    loading.style.display = "none";
-    quizScreen.style.display = "block";
-    currentQuestion = 0;
-    score = 0;
-    showQuestion();
-
-  } catch (err) {
-    alert("Impossible de charger les questions.\nVérifie ta connexion.");
-    loading.style.display = "none";
-    startScreen.style.display = "block";
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>General Knowledge Quiz: Free 10-Question Trivia | Amin Karzazi</title>
+<meta name="description" content="Free general knowledge quiz by Amin Karzazi: pick a category, answer 10 multiple-choice questions and see your score. Built with HTML, CSS and JavaScript.">
+<meta name="author" content="Amin Karzazi">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0f172a">
+<link rel="canonical" href="https://aminkarzazi-logic.github.io/portfolio/quiz.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Amin Karzazi — Portfolio">
+<meta property="og:title" content="General Knowledge Quiz | Amin Karzazi">
+<meta property="og:description" content="Pick a category, answer 10 multiple-choice questions and see your score.">
+<meta property="og:url" content="https://aminkarzazi-logic.github.io/portfolio/quiz.html">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "General Knowledge Quiz",
+  "url": "https://aminkarzazi-logic.github.io/portfolio/quiz.html",
+  "description": "Free general knowledge quiz: choose a category, answer 10 multiple-choice questions and see your score. Questions come from the Open Trivia Database.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "isBasedOn": "https://opentdb.com",
+  "author": {
+    "@type": "Person",
+    "name": "Amin Karzazi",
+    "url": "https://aminkarzazi-logic.github.io/portfolio/",
+    "sameAs": [
+      "https://github.com/aminkarzazi-logic",
+      "https://www.linkedin.com/in/amin-karzazi-259a95439",
+      "https://lattes.cnpq.br/5289642373788927"
+    ]
   }
-}
-
-function showQuestion() {
-  const q = questions[currentQuestion];
-  document.getElementById("question").innerHTML = q.question;
-  document.getElementById("score").textContent = score;
-  document.getElementById("total").textContent = questions.length;
-
-  const optionsDiv = document.getElementById("options");
-  optionsDiv.innerHTML = "";
-
-  q.answers.forEach(answer => {
-    const div = document.createElement("div");
-    div.className = "option";
-    div.textContent = answer;
-    div.addEventListener("click", () => selectAnswer(div, answer));
-    optionsDiv.appendChild(div);
-  });
-
-  nextBtn.disabled = true;
-  selectedAnswer = null;
-}
-
-function selectAnswer(element, answer) {
-  if (selectedAnswer) return; // déjà répondu
-
-  selectedAnswer = answer;
-
-  // Désélectionne les autres
-  document.querySelectorAll(".option").forEach(opt => {
-    opt.classList.remove("selected");
-  });
-
-  element.classList.add("selected");
-  nextBtn.disabled = false;
-}
-
-function nextQuestion() {
-  const q = questions[currentQuestion];
-  const isCorrect = selectedAnswer === q.correct;
-
-  if (isCorrect) score++;
-
-  // Montre la bonne réponse
-  document.querySelectorAll(".option").forEach(opt => {
-    const text = opt.textContent;
-    opt.classList.remove("selected");
-
-    if (text === q.correct) {
-      opt.classList.add("correct");
-    } else if (text === selectedAnswer && !isCorrect) {
-      opt.classList.add("wrong");
-    }
-
-    opt.style.pointerEvents = "none";
-  });
-
-  currentQuestion++;
-
-  if (currentQuestion >= questions.length) {
-    setTimeout(endQuiz, 1800);
-  } else {
-    setTimeout(() => {
-      showQuestion();
-    }, 1800);
-  }
-}
-
-function endQuiz() {
-  alert(`Quiz terminé !\nTon score : ${score} / ${questions.length}\n${getComment(score, questions.length)}`);
-  location.reload();
-}
-
-function getComment(score, total) {
-  const percent = Math.round((score / total) * 100);
-  if (percent >= 90) return "🌟 Excellent ! Tu es incollable !";
-  if (percent >= 70) return "👏 Très bon niveau !";
-  if (percent >= 50) return "Pas mal du tout 😉";
-  return "Continue de t'entraîner, tu vas progresser ! 💪";
-}
-
-function decodeHTML(html) {
-  const txt = document.createElement("textarea");
-  txt.innerHTML = html;
-  return txt.value;
-}
-
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
 }
 </script>
-  <footer style="
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: 1rem;
-  background: rgba(30, 41, 59, 0.8);           /* ← sombre + transparence */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: #cbd5e1;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.95rem;
-  z-index: 10;
-  box-shadow: 0 -4px 15px rgba(0,0,0,0.3);     /* ← petit effet d'élévation */
-">
-  © 2026 AMIN KARZAZI 
+<style>
+:root{
+  --bg1:#0f172a; --bg2:#1e293b; --card:rgba(30,41,59,.7);
+  --text:#e2e8f0; --muted:#a5b3c7; --primary:#6366f1; --primary2:#4f46e5;
+  --ok:#22c55e; --bad:#ef4444; --line:rgba(255,255,255,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2)) fixed;
+  color:var(--text); line-height:1.5; min-height:100vh; min-height:100dvh;
+  display:flex; flex-direction:column; align-items:center; gap:1rem;
+  padding:max(1rem,env(safe-area-inset-top)) max(1rem,env(safe-area-inset-right)) max(1rem,env(safe-area-inset-bottom)) max(1rem,env(safe-area-inset-left));
+}
+a{color:#a5b4fc}
+a:hover{color:#c7d2fe}
+:focus-visible{outline:3px solid #a5b4fc;outline-offset:3px}
+.top{width:100%;max-width:44rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:.95rem}
+.top .brand{color:var(--muted);font-weight:600}
+main{flex:1;width:100%;max-width:44rem;display:flex;flex-direction:column;justify-content:center;gap:1.25rem}
+.card{
+  background:var(--card); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line); border-radius:1.25rem;
+  padding:clamp(1.25rem,4vw,2.5rem); box-shadow:0 10px 30px -10px rgba(0,0,0,.45);
+}
+h1{font-size:clamp(1.4rem,4.5vw,2rem);line-height:1.2;font-weight:700;text-align:center;
+  background:linear-gradient(90deg,#a5b4fc,#c084fc);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:.75rem}
+.intro{text-align:center;color:var(--muted);margin:0 auto 1.5rem;max-width:34rem}
+label{display:block;margin-bottom:.5rem;color:var(--muted);font-weight:500}
+select{width:100%;background:rgba(51,65,85,.6);color:var(--text);border:1px solid var(--line);
+  padding:.9rem 1rem;font:inherit;border-radius:.9rem;min-height:3rem}
+.btn{display:block;width:100%;max-width:18rem;margin:1.25rem auto 0;min-height:3rem;
+  background:linear-gradient(90deg,var(--primary),var(--primary2));color:#fff;border:0;border-radius:3rem;
+  padding:.85rem 2rem;font:inherit;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .2s;
+  box-shadow:0 8px 20px -6px rgba(99,102,241,.45)}
+.btn:hover:not(:disabled){transform:translateY(-2px)}
+.btn:disabled{background:#475569;box-shadow:none;opacity:.6;cursor:not-allowed}
+.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none}
+.meta{display:flex;justify-content:space-between;gap:1rem;color:var(--muted);font-weight:600;margin-bottom:1.25rem;flex-wrap:wrap}
+.meta span:last-child{color:var(--text)}
+#question{font-size:clamp(1.1rem,3.6vw,1.45rem);line-height:1.45;font-weight:500;text-align:center;margin-bottom:1.5rem;overflow-wrap:anywhere}
+#question:focus{outline:none}
+.options{display:grid;gap:.75rem}
+.option{width:100%;min-height:3.25rem;text-align:left;font:inherit;color:var(--text);
+  background:rgba(51,65,85,.45);border:1px solid var(--line);border-radius:1rem;padding:.9rem 1.1rem;
+  cursor:pointer;overflow-wrap:anywhere;transition:border-color .2s,background .2s}
+.option:hover:not(:disabled){border-color:rgba(99,102,241,.6);background:rgba(99,102,241,.16)}
+.option:disabled{cursor:default;color:var(--text)}
+.option.correct{background:rgba(34,197,94,.2);border-color:var(--ok)}
+.option.correct::after{content:" ✓"}
+.option.wrong{background:rgba(239,68,68,.2);border-color:var(--bad)}
+.option.wrong::after{content:" ✗"}
+#feedback{min-height:1.5rem;margin-top:1rem;text-align:center;font-weight:600}
+.state{text-align:center}
+.big{font-size:clamp(2.2rem,9vw,3.5rem);font-weight:700;margin:.5rem 0}
+.about{color:var(--muted);font-size:.95rem;text-align:center;padding:0 .5rem}
+footer{width:100%;max-width:44rem;text-align:center;color:var(--muted);font-size:.9rem;padding-bottom:.5rem}
+@media (min-width:1200px){main,.top,footer{max-width:48rem}}
+@media (max-height:520px) and (orientation:landscape){.card{padding:1rem 1.5rem}.intro{margin-bottom:.75rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a href="./">← Back to portfolio</a>
+  <span class="brand">Amin Karzazi</span>
+</header>
+
+<main>
+  <div class="card">
+    <h1>General Knowledge Quiz</h1>
+
+    <section id="start">
+      <p class="intro">Choose a category and answer 10 multiple-choice questions. You see whether each answer is right as soon as you pick it, and your final score at the end.</p>
+      <label for="category">Category</label>
+      <select id="category">
+        <option value="">All categories</option>
+        <option value="9">General Knowledge</option>
+        <option value="10">Books</option>
+        <option value="11">Film</option>
+        <option value="12">Music</option>
+        <option value="17">Science &amp; Nature</option>
+        <option value="18">Computers</option>
+        <option value="19">Mathematics</option>
+        <option value="21">Sports</option>
+        <option value="22">Geography</option>
+        <option value="23">History</option>
+        <option value="24">Politics</option>
+        <option value="25">Art</option>
+      </select>
+      <button class="btn" id="startBtn" type="button">Start quiz</button>
+    </section>
+
+    <section id="loading" class="state" role="status" hidden>Loading questions…</section>
+
+    <section id="quiz" hidden>
+      <div class="meta"><span id="progress"></span><span id="score"></span></div>
+      <h2 id="question" tabindex="-1"></h2>
+      <div class="options" id="options"></div>
+      <p id="feedback" aria-live="polite"></p>
+      <button class="btn" id="next" type="button" disabled>Next</button>
+    </section>
+
+    <section id="result" class="state" hidden>
+      <h2>Quiz complete</h2>
+      <p class="big" id="final"></p>
+      <p id="comment"></p>
+      <button class="btn" id="again" type="button">Play again</button>
+    </section>
+
+    <section id="error" class="state" role="alert" hidden>
+      <p id="error-msg"></p>
+      <button class="btn" id="retry" type="button">Back to start</button>
+    </section>
+
+    <noscript><p class="state">This quiz needs JavaScript. Please enable it in your browser.</p></noscript>
+  </div>
+
+  <p class="about">About this quiz: a personal web project by Amin Karzazi, written in HTML, CSS and JavaScript. It fetches questions from the free Open Trivia Database API. The questions are written by contributors and are in English.</p>
+</main>
+
+<footer>
+  © 2026 Amin Karzazi · Questions:
+  <a href="https://opentdb.com" target="_blank" rel="noopener">Open Trivia Database</a> (CC BY-SA 4.0)
 </footer>
+
+<script>
+const API = "https://opentdb.com/api.php?amount=10&type=multiple";
+const $ = id => document.getElementById(id);
+const screens = ["start", "loading", "quiz", "result", "error"];
+const state = { qs: [], i: 0, score: 0, answered: false };
+
+// mostra só uma tela por vez
+function show(name) { screens.forEach(s => { $(s).hidden = s !== name; }); }
+
+// a API devolve símbolos como &#039; — isto converte para texto normal
+function decode(html) {
+  const t = document.createElement("textarea");
+  t.innerHTML = html;
+  return t.value;
+}
+
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function fail(msg) { $("error-msg").textContent = msg; show("error"); }
+
+async function startQuiz() {
+  show("loading");
+  const cat = $("category").value;
+  try {
+    const res = await fetch(API + (cat ? "&category=" + cat : ""));
+    if (!res.ok) throw new Error("http " + res.status);
+    const data = await res.json();
+    if (data.response_code === 5) return fail("Too many requests. Wait 5 seconds and try again.");
+    if (data.response_code !== 0) return fail("This category does not have enough questions. Choose another one.");
+    state.qs = data.results.map(q => ({
+      text: decode(q.question),
+      correct: decode(q.correct_answer),
+      answers: shuffle([q.correct_answer, ...q.incorrect_answers].map(decode))
+    }));
+    state.i = 0;
+    state.score = 0;
+    render();
+    show("quiz");
+    $("question").focus();
+  } catch (e) {
+    fail("Could not load the questions. Check your connection and try again.");
+  }
+}
+
+function render() {
+  const q = state.qs[state.i];
+  const last = state.i === state.qs.length - 1;
+  state.answered = false;
+  $("progress").textContent = "Question " + (state.i + 1) + " of " + state.qs.length;
+  $("score").textContent = "Score: " + state.score;
+  $("question").textContent = q.text;          // textContent é mais seguro que innerHTML
+  $("feedback").textContent = "";
+  const box = $("options");
+  box.replaceChildren();
+  q.answers.forEach(a => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "option";
+    b.textContent = a;
+    b.addEventListener("click", () => choose(b, a));
+    box.appendChild(b);
+  });
+  $("next").disabled = true;
+  $("next").textContent = last ? "See results" : "Next";
+}
+
+function choose(btn, answer) {
+  if (state.answered) return;                  // só vale o primeiro clique
+  state.answered = true;
+  const q = state.qs[state.i];
+  const ok = answer === q.correct;
+  if (ok) state.score++;
+  document.querySelectorAll(".option").forEach(o => {
+    o.disabled = true;
+    if (o.textContent === q.correct) o.classList.add("correct");
+  });
+  if (!ok) btn.classList.add("wrong");
+  $("score").textContent = "Score: " + state.score;
+  $("feedback").textContent = ok ? "Correct!" : "Not quite. The answer is: " + q.correct;
+  $("next").disabled = false;
+}
+
+function next() {
+  if (!state.answered) return;
+  state.answered = false;                      // evita contar duas vezes
+  state.i++;
+  if (state.i >= state.qs.length) return finish();
+  render();
+  $("question").focus();
+}
+
+function finish() {
+  const n = state.qs.length;
+  const pct = Math.round((state.score / n) * 100);
+  $("final").textContent = state.score + " / " + n;
+  $("comment").textContent =
+    pct >= 90 ? "Excellent! Hard to beat." :
+    pct >= 70 ? "Great job!" :
+    pct >= 50 ? "Not bad at all." :
+    "Keep practicing. You will improve!";
+  show("result");
+}
+
+$("startBtn").addEventListener("click", startQuiz);
+$("next").addEventListener("click", next);
+$("again").addEventListener("click", () => show("start"));
+$("retry").addEventListener("click", () => show("start"));
+</script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
